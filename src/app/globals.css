@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  background-image: url("/layered-peaks-haikei.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.card_conetent {
+  background-color: #F2EEB6;
+}
+
+.card_shadow {
+  box-shadow:
+    rgba(0, 0, 0, 0.07) 0px 1px 2px,
+    rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px,
+    rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px,
+    rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.img_shadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.button_add {
+  --width: 100px;
+  --height: 40px;
+  --tooltip-height: 35px;
+  --tooltip-width: 90px;
+  --gap-between-tooltip-to-button: 18px;
+  --button-color: #FFFFBF;
+  --tooltip-color: #fff;
+  width: var(--width);
+  height: var(--height);
+  background: var(--button-color);
+  position: relative;
+  text-align: center;
+  border-radius: 0.3em;
+  font-family: "Roboto", sans-serif;
+  transition: background 0.3s;
+  margin-left: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px, rgba(0, 0, 0, 0.23) 0px 1px 3px;
+  padding-left: 5px;
+  cursor: pointer
+}
+
+
+.button_add::after,.button_add::before {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-wrapper,.text,.icon {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #46277C;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.text,.icon {
+  transition: top 0.5s;
+}
+
+.icon {
+  color: #fff;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_add:hover {
+  background:  #1afc80;
+  ;
+}
+
+.button_add:hover .text {
+  top: -100%;
+}
+
+.button_add:hover .icon {
+  top: 0;
+}
+
+.button_add:hover:before,.button:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.button_add:hover:after {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+
+.button_add:hover:before {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
+.button_reg {
+  --width: 100px;
+  --height: 40px;
+  --tooltip-height: 35px;
+  --tooltip-width: 90px;
+  --gap-between-tooltip-to-button: 18px;
+  --button-color: #FFFFBF;
+  --tooltip-color: #fff;
+  width: var(--width);
+  height: var(--height);
+  background: var(--button-color);
+  position: relative;
+  text-align: center;
+  border-radius: 0.3em;
+  font-family: "Roboto", sans-serif;
+  transition: background 0.3s;
+  margin-left: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px, rgba(0, 0, 0, 0.23) 0px 1px 3px;
+  padding-left: 5px;
+  cursor: pointer
+}
+
+
+.button_reg::after,.button_add::before {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-wrapper,.text,.icon {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #46277C;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.text,.icon {
+  transition: top 0.5s;
+}
+
+.icon {
+  color: #fff;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_reg:hover {
+  background: #ca4b18;
+}
+
+.button_reg:hover .text {
+  top: -100%;
+}
+
+.button_reg:hover .icon {
+  top: 0;
+}
+
+.button_reg:hover:before,.button:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.button_reg:hover:after {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+
+.button_reg:hover:before {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
+.nav_actions {
+  box-shadow:
+    0 0 5px #000000,
+    0 0 0 10px #f2f0ac;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
