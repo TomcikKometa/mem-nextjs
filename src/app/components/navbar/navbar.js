@@ -7,7 +7,7 @@ export default function Navbar() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <Image
-            src="/emoji-happy-missing-577-svgrepo-com.svg"
+            src="/emoji-start.svg"
             width={100}
             height={100}
             alt="Arc de Triomphe"
@@ -43,7 +43,7 @@ export default function Navbar() {
           </svg>
         </button>
         <div className="bg-orange-300">
-          <ul className="font-medium flex flex-col p-4 md:p-3 mt-4 border border-gray-100 nav_actions rounded-lg bg-yellow-100 shadow-xl md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:border-gray-700 w-72 justify-center">
+          <ul className="font-medium flex flex-col p-4 md:p-3 mt-4 border border-gray-100 nav_actions rounded-lg bg-yellow-100 shadow-xl md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:border-gray-700 w-80 justify-center">
             <li>
               {/* <Link href={"/pages/mem-card"}>
                 <p>Wszystkie</p>
@@ -64,6 +64,14 @@ export default function Navbar() {
                 className=" md:hover:text-orange-300"
               >
                 Regular
+              </a>
+            </li>
+            <li>
+              <a
+                href="/pages/nowe"
+                className=" md:hover:text-orange-300"
+              >
+                Nowe
               </a>
             </li>
           </ul>
