@@ -1,25 +1,17 @@
 "use client";
-import { useState } from "react";
+
 import { Card, CardContent, CardDescription, CardFooter } from "../../ui/card";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../../store/reducers/ReducerSlice";
 
 export default function MemCard({ mem, addToHotList }) {
-  const [downvotes, setDownvotes] = useState(mem.downvotes);
-  const [upvotes, setUpvotes] = useState(mem.upvotes);
+  const showMemList =  useSelector((state) => state.mem)
 
-  const [countVotes, setCountVotes] = useState(upvotes - downvotes);
+  const dispatch = useDispatch();
 
-  function upVotes() {
-    if (upvotes >= 0) {
-      setCountVotes((state) => state + 1);
-    }
-  }
-
-  function downVotes() {
-    if (downvotes >= 0 && countVotes > 0) {
-      console.log(downvotes);
-      setCountVotes((state) => state - 1);
-    }
+  function showList() {
+    console.log(showMemList);
   }
 
   return (
@@ -37,7 +29,7 @@ export default function MemCard({ mem, addToHotList }) {
       </CardContent>
       <CardDescription className="h-10 flex items-center justify-center  pl-6">
         <div className="flex text-lg ">
-          <span className="font-semibold pl-2">{countVotes}</span>
+          <span className="font-semibold pl-2"></span>
         </div>
       </CardDescription>
       <CardFooter className="bg-orange-300">
@@ -46,7 +38,10 @@ export default function MemCard({ mem, addToHotList }) {
             <p className="text-lg text-gray-600 font-bold">Głosuj:</p>
           </div>
           <div className="flex align-middle">
-            <div className="button_add" onClick={upVotes}>
+            <div
+              className="button_add"
+              onClick={() => {dispatch(login({mem}),showList())}}
+            >
               <div className="button-wrapper">
                 <div className="text ">Doodaj&nbsp;</div>
                 <span>
@@ -62,7 +57,7 @@ export default function MemCard({ mem, addToHotList }) {
                 </span>
               </div>
             </div>
-            <div className="button_reg" onClick={downVotes}>
+            <div className="button_reg">
               <div className="button-wrapper">
                 <div className="text ">Odejmij&nbsp;</div>
                 <span>
@@ -84,3 +79,26 @@ export default function MemCard({ mem, addToHotList }) {
     </Card>
   );
 }
+// const [downvotes, setDownvotes] = useState(mem.downvotes);
+// const [upvotes, setUpvotes] = useState(mem.upvotes);
+
+// const [countVotes, setCountVotes] = useState(upvotes - downvotes);
+
+// function upVotes() {
+//   if (upvotes >= 0) {
+//     setCountVotes((state) => state + 1);
+//   }
+// }
+
+// function downVotes() {
+//   if (downvotes >= 0 && countVotes > 0) {
+//     console.log(downvotes);
+//     setCountVotes((state) => state - 1);
+//   }
+// }
+
+// const dispatch = useDispatch();
+
+// const upVotes = (e) => {
+//   dispatch({ type: "upVotes", value: 1 });
+// };
