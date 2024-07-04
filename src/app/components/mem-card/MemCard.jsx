@@ -1,19 +1,25 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardFooter } from "../../ui/card";
+import { Card, CardContent, CardDescription, CardFooter } from "../ui/card";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../store/reducers/ReducerSlice";
+import { useDispatch, useSelector,getState } from "react-redux";
+import { add  } from "../../store/reducers/ReducerSlice";
+import store from '../../store/store'
 
 export default function MemCard({ mem, addToHotList }) {
-  const showMemList =  useSelector((state) => state.mem)
+  // const showMemList =  useSelector((state) => state.mem.all);
 
   const dispatch = useDispatch();
 
   function showList() {
-    console.log(showMemList);
+    // console.log(showMemList)
   }
 
+  function countVotes(){
+
+  }
+
+  
   return (
     <Card className="card_shadow ">
       <CardContent className="rounded-md overflow-hidden shadow-md cursor-pointer hover:scale-[1.67] transition-all card_conetent pb-2">
@@ -40,7 +46,7 @@ export default function MemCard({ mem, addToHotList }) {
           <div className="flex align-middle">
             <div
               className="button_add"
-              onClick={() => {dispatch(login({mem}),showList())}}
+              onClick={() => {dispatch(add({mem}))}}
             >
               <div className="button-wrapper">
                 <div className="text ">Doodaj&nbsp;</div>
@@ -58,7 +64,7 @@ export default function MemCard({ mem, addToHotList }) {
               </div>
             </div>
             <div className="button_reg">
-              <div className="button-wrapper">
+              <div className="button-wrapper" onClick={() => {dispatch(add({mem}),showList())}}>
                 <div className="text ">Odejmij&nbsp;</div>
                 <span>
                   <div className="icon d-flex align-content-center align-items-center">
