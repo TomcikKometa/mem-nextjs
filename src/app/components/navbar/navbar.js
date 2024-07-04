@@ -48,7 +48,7 @@ export default function Navbar() {
               {/* <Link href={"/pages/mem-card"}>
                 <p>Wszystkie</p>
               </Link> */}
-              <a href="/pages/mem-card" className=" md:hover:text-orange-300" aria-current="page">Wszystkie</a>
+              <a href="/pages/all" className=" md:hover:text-orange-300" aria-current="page">Wszystkie</a>
             </li>
             <li>
               <a

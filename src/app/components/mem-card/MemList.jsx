@@ -1,6 +1,6 @@
 'use client';
 
-import MemCard from "./mem-card/MemCard";
+import MemCard from "./MemCard";
 
  export default function  MemList({ memList, addToHotList }) {
   return (
