@@ -2,12 +2,12 @@
 
 
 import { configureStore } from "@reduxjs/toolkit";
-import  mem from "./reducers/ReducerSlice";
+import  mems from "./reducers/ReducerSlice";
 import { useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
-    mem
+   mems
   },
 })
 
