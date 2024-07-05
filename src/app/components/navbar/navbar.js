@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from 'next/router'
 
 export default function Navbar() {
+
+  const router = useRouter();
+
   return (
     <nav className="bg-orange-300">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -48,14 +52,15 @@ export default function Navbar() {
               {/* <Link href={"/pages/mem-card"}>
                 <p>Wszystkie</p>
               </Link> */}
-              <a href="/pages/all" className=" md:hover:text-orange-300" aria-current="page">Wszystkie</a>
+              
+              <a onClick={() => router.push('/pages/all')} className=" md:hover:text-orange-300" aria-current="page">Wszystkie</a>
             </li>
             <li>
-              <a href="/pages/hot" className=" md:hover:text-orange-300">Hot</a>
+              <a onClick={() => router.push('/pages/hot')} className=" md:hover:text-orange-300">Hot</a>
             </li>
             <li>
               <a
-                href="#"
+                onClick={() => router.push('/pages/regular')}
                 className=" md:hover:text-orange-300"
               >
                 Regular
@@ -63,7 +68,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="/pages/nowe"
+                onClick={() => router.push('/pages/404')}
                 className=" md:hover:text-orange-300"
               >
                 Nowe
