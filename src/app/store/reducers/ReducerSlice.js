@@ -140,7 +140,7 @@ let stateList = {
 const hotList = []
 
 export const counterSlice = createSlice({
-  initialState,
+  initialState : stateList.all,
   name: "counter",
   reducers: {
     add: (state, action) => {
