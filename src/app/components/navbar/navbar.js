@@ -51,12 +51,7 @@ export default function Navbar() {
               <a href="/pages/all" className=" md:hover:text-orange-300" aria-current="page">Wszystkie</a>
             </li>
             <li>
-              <a
-                href="#"
-                className=" md:hover:text-orange-300"
-              >
-                Hot
-              </a>
+              <a href="/pages/hot" className=" md:hover:text-orange-300">Hot</a>
             </li>
             <li>
               <a
