@@ -7,7 +7,7 @@ import { add,remove } from "../../store/reducers/ReducerSlice";
 import { useState } from "react";
 
 export default function MemCard({ mem }) {
-  const showMemList =  useSelector((state) => state.mems);
+  const showMemList =  useSelector((state) => state.rootReducer);
   const [downvotes, setDownvotes] = useState(mem.downvotes);
   const [upvotes, setUpvotes] = useState(mem.upvotes);
   const dispatch = useDispatch();
