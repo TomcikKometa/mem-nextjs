@@ -2,21 +2,34 @@
 
 import { Card, CardContent, CardDescription, CardFooter } from "../ui/card";
 import Image from "next/image";
-import { useDispatch, useSelector,getState } from "react-redux";
-import { add  } from "../../store/reducers/ReducerSlice";
-import store from '../../store/store'
+import { useDispatch, useSelector } from "react-redux";
+import { add,remove } from "../../store/reducers/ReducerSlice";
+import { useState } from "react";
 
-export default function MemCard({ mem, addToHotList }) {
-  // const showMemList =  useSelector((state) => state.mem.all);
-
+export default function MemCard({ mem }) {
+  const showMemList =  useSelector((state) => state.mems);
+  const [downvotes, setDownvotes] = useState(mem.downvotes);
+  const [upvotes, setUpvotes] = useState(mem.upvotes);
   const dispatch = useDispatch();
 
-  function showList() {
+  function addUpVotes(mem) {
+    setUpvotes((state) => state + 1);
+    countVotes(mem)
     // console.log(showMemList)
   }
 
-  function countVotes(){
+  function removeDownVotes(){
+    setDownvotes((state) => state + 1);
+    countVotes()
+  }
 
+  function countVotes(mem){
+    const countVotes = upvotes - downvotes;
+    console.log(countVotes)
+    if(countVotes > 4){
+      dispatch(add({mem}))
+    } else {}
+    console.log(showMemList)
   }
 
   
@@ -35,7 +48,7 @@ export default function MemCard({ mem, addToHotList }) {
       </CardContent>
       <CardDescription className="h-10 flex items-center justify-center  pl-6">
         <div className="flex text-lg ">
-          <span className="font-semibold pl-2"></span>
+          <span className="font-semibold pl-2">{upvotes} | {downvotes} </span>
         </div>
       </CardDescription>
       <CardFooter className="bg-orange-300">
@@ -44,12 +57,9 @@ export default function MemCard({ mem, addToHotList }) {
             <p className="text-lg text-gray-600 font-bold">Głosuj:</p>
           </div>
           <div className="flex align-middle">
-            <div
-              className="button_add"
-              onClick={() => {dispatch(add({mem}))}}
-            >
+            <div className="button_add"onClick={() => addUpVotes(mem)}>
               <div className="button-wrapper">
-                <div className="text ">Doodaj&nbsp;</div>
+                <div className="text ">Dodaj&nbsp;</div>
                 <span>
                   <div className="icon d-flex align-content-center align-items-center">
                     <img
@@ -64,7 +74,7 @@ export default function MemCard({ mem, addToHotList }) {
               </div>
             </div>
             <div className="button_reg">
-              <div className="button-wrapper" onClick={() => {dispatch(add({mem}),showList())}}>
+              <div className="button-wrapper" onClick={() => removeDownVotes()}>
                 <div className="text ">Odejmij&nbsp;</div>
                 <span>
                   <div className="icon d-flex align-content-center align-items-center">
