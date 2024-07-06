@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardFooter } from "../ui/card";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { add,remove } from "../../store/reducers/ReducerSlice";
+import { addToHotList,addToRegularList } from "../../store/reducers/ReducerSlice";
 import { useState } from "react";
 
 export default function MemCard({ mem }) {
@@ -27,15 +27,15 @@ export default function MemCard({ mem }) {
     const countVotes = upvotes - downvotes;
     console.log(countVotes)
     if(countVotes > 4){
-      dispatch(add({mem}))
-    } else {}
+      dispatch(addToHotList({mem}))
+    } else {dispatch(addToRegularList({mem}))}
     console.log(showMemList)
   }
 
   
   return (
-    <Card className="card_shadow ">
-      <CardContent className="rounded-md overflow-hidden shadow-md cursor-pointer hover:scale-[1.67] transition-all card_conetent pb-2">
+    <Card className="card_colour">
+      <CardContent className="rounded-md overflow-hidden cursor-pointer hover:scale-[1.67] transition-all card_colour pb-2">
         <div className="w-full aspect-w-16 aspect-h-7">
           <Image
             src={`/` + mem.img}
@@ -51,7 +51,7 @@ export default function MemCard({ mem }) {
           <span className="font-semibold pl-2">{upvotes} | {downvotes} </span>
         </div>
       </CardDescription>
-      <CardFooter className="bg-orange-300">
+      <CardFooter className="card_footer card_shadow">
         <div className="p-6 flex justify-between">
           <div className="flex items-center flex-wrap gap-2">
             <p className="text-lg text-gray-600 font-bold">Głosuj:</p>

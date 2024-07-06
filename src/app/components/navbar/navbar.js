@@ -1,13 +1,21 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from 'next/router'
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { useDispatch } from "react-redux";
+import { clearHotList } from "../../store/reducers/ReducerSlice";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-
+  const dispatch = useDispatch();
   const router = useRouter();
 
+  function renderPage() {
+    router.refresh(); 
+  }
+
   return (
-    <nav className="bg-orange-300">
+    <nav className="bg-orange-300 navbar-shadow">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <Image
@@ -17,11 +25,13 @@ export default function Navbar() {
             alt="Arc de Triomphe"
             className="img_shadow"
           />
-         <svg height="40" width="240">
-        <text x="5" y="30" fill="red" fontSize="25">
-          <tspan fill="#111826" stroke="#36494F">MEMS_not_TO_#LOL</tspan>
-        </text>
-      </svg>
+          <svg height="40" width="240">
+            <text x="5" y="30" fill="red" fontSize="25">
+              <tspan fill="#111826" stroke="#36494F">
+                MEMS_not_TO_#LOL
+              </tspan>
+            </text>
+          </svg>
         </a>
         <button
           data-collapse-toggle="navbar-default"
@@ -49,30 +59,67 @@ export default function Navbar() {
         <div className="bg-orange-300">
           <ul className="font-medium flex flex-col p-4 md:p-3 mt-4 border border-gray-100 nav_actions rounded-lg bg-yellow-100 shadow-xl md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:border-gray-700 w-80 justify-center">
             <li>
-              {/* <Link href={"/pages/mem-card"}>
-                <p>Wszystkie</p>
-              </Link> */}
-              
-              <a onClick={() => router.push('/pages/all')} className=" md:hover:text-orange-300" aria-current="page">Wszystkie</a>
-            </li>
-            <li>
-              <a onClick={() => router.push('/pages/hot')} className=" md:hover:text-orange-300">Hot</a>
-            </li>
-            <li>
-              <a
-                onClick={() => router.push('/pages/regular')}
+              <Link
+                href="/pages/all/"
                 className=" md:hover:text-orange-300"
+                aria-current="page"
+              >
+                All
+              </Link>
+            </li>
+            <li>
+              {/* <Link
+                data-dropdown-toggle="dropdownNavbar"
+                href="/pages/hot/"
+                className=" md:hover:text-orange-300"
+                aria-current="page"
+              >
+                Hot
+              </Link> */}
+              <Menu>
+                <MenuButton>Hot</MenuButton>
+                <MenuItems
+                  anchor="bottom"
+                  className="card_shadow w-28 text-center rounded-md bg-orange-200 pt-2 pb-2"
+                >
+                  <MenuItem>
+                    <Link
+                      className="block data-[focus]:bg-orange-100 mb-1"
+                      href="/pages/hot/"
+                    >
+                      Lista Hot
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <a
+                      className="block data-[focus]:bg-orange-100 mt-1 cursor-pointer"
+                      onClick={() => {
+                        dispatch(clearHotList("clear"), renderPage());
+                      }}
+                    >
+                      Wyczyść
+                    </a>
+                  </MenuItem>
+                </MenuItems>
+              </Menu>
+            </li>
+            <li>
+              <Link
+                href="/pages/regular/"
+                className=" md:hover:text-orange-300"
+                aria-current="page"
               >
                 Regular
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                onClick={() => router.push('/pages/404')}
+              <Link
+                href="/pages/new/"
                 className=" md:hover:text-orange-300"
+                aria-current="page"
               >
-                Nowe
-              </a>
+                New
+              </Link>
             </li>
           </ul>
         </div>
