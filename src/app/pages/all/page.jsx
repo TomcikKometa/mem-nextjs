@@ -69,14 +69,6 @@ const memList = [
 ];
 
 
-export default function Mems() {
-  const [hotList, setHotList] = useState([]);
-  const [regList, setRegList] = useState([]);
-
-  function addToHotList(mem){
-    setHotList(state => [...state,mem])
-  }
-
-
+export default function AllMems() {
   return <MemList memList={memList}/>;
 }
