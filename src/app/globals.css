@@ -26,6 +26,27 @@ body {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
+/* a {
+  color: blue;
+} */
+
+/* Internal links, beginning with "#" */
+a[href^="#"] {
+  background-color: gold;
+}
+
+/* Links with "example" anywhere in the URL */
+a[class~="aabb"] {
+  background-color: #F2D091;
+  font-size: 18px;
+  width: 150px;
+  border-radius: 5px;
+  display: list-item;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .img_shadow {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
