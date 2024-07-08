@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useDispatch } from "react-redux";
-import { clearHotList } from "../../store/reducers/ReducerSlice";
+import { clearHotList,clearRegularList } from "../../store/reducers/ReducerSlice";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
@@ -80,37 +80,58 @@ export default function Navbar() {
                 <MenuButton>Hot</MenuButton>
                 <MenuItems
                   anchor="bottom"
-                  className="card_shadow w-28 text-center rounded-md bg-orange-200 pt-2 pb-2"
+                  className="aabb"
                 >
                   <MenuItem>
-                    <Link
-                      className="block data-[focus]:bg-orange-100 mb-1"
+                    <a
+                      className="block data-[focus]:bg-orange-100 aabb"
                       href="/pages/hot/"
                     >
                       Lista Hot
-                    </Link>
+                    </a>
                   </MenuItem>
                   <MenuItem>
                     <a
-                      className="block data-[focus]:bg-orange-100 mt-1 cursor-pointer"
+                      className="block data-[focus]:bg-orange-100 aabb"
+                     
                       onClick={() => {
                         dispatch(clearHotList("clear"), renderPage());
                       }}
                     >
-                      Wyczyść
+                      Wyczyść listę 
                     </a>
                   </MenuItem>
                 </MenuItems>
               </Menu>
             </li>
             <li>
-              <Link
-                href="/pages/regular/"
-                className=" md:hover:text-orange-300"
-                aria-current="page"
-              >
-                Regular
-              </Link>
+            <Menu>
+                <MenuButton>Regular</MenuButton>
+                <MenuItems
+                  anchor="bottom"
+                  className="aabb"
+                >
+                  <MenuItem>
+                    <a
+                      className="block data-[focus]:bg-orange-100 aabb"
+                      href="/pages/regular/"
+                    >
+                      Lista Regular
+                    </a>
+                  </MenuItem>
+                  <MenuItem>
+                    <a
+                      className="block data-[focus]:bg-orange-100 aabb"
+                     
+                      onClick={() => {
+                        dispatch(clearRegularList("clear"), renderPage());
+                      }}
+                    >
+                      Wyczyść listę 
+                    </a>
+                  </MenuItem>
+                </MenuItems>
+              </Menu>
             </li>
             <li>
               <Link
