@@ -70,5 +70,8 @@ const memList = [
 
 
 export default function AllMems() {
-  return <MemList memList={memList}/>;
+
+  const textDataOne = 'Głosuj już dziś i';
+  const textDataTwo = 'graj o Fiata 126p oraz zestaw modnych firanek';
+  return <MemList memList={memList} textDataOne={textDataOne} textDataTwo={textDataTwo}/>;
 }

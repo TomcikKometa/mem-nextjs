@@ -2,8 +2,8 @@ import Image from "next/image";
 
  export default function Home() {
   return (
-    <main className="flex p-8 flex-col items-center justify-between text-5xl overflow-hidden">
-      <p>Witaj w aplikacji do głosownia na ulubione memy</p>
+    <main className="flex p-8 flex-col items-center justify-between text-4xl overflow-hidden text-center">
+      <p>Witaj <br/> w MEMS_not_TO_#LOL</p>
       <Image
                       src="/face-pack-person-svgrepo-com.svg"
                       alt="Picture of the author"
