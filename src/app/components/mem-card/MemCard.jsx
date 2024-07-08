@@ -7,7 +7,7 @@ import { addToHotList,addToRegularList } from "../../store/reducers/ReducerSlice
 import { useState } from "react";
 
 export default function MemCard({ mem }) {
-  const showMemList =  useSelector((state) => state.rootReducer);
+  const showMemList =  useSelector((state) => state.memRootReducer);
   const [downvotes, setDownvotes] = useState(mem.downvotes);
   const [upvotes, setUpvotes] = useState(mem.upvotes);
   const dispatch = useDispatch();
@@ -25,6 +25,8 @@ export default function MemCard({ mem }) {
 
   function countVotes(mem){
     const countVotes = upvotes - downvotes;
+    console.log(upvotes)
+    console.log(downvotes)
     console.log(countVotes)
     if(countVotes > 4){
       dispatch(addToHotList({mem}))
