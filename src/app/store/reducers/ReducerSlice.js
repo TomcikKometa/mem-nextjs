@@ -86,11 +86,9 @@ export const counterSlice = createSlice({
         hotList;
       } else hotList.push(action.payload.memUpdated);
       return {
-        stateList: {
           all: [...stateList.all],
           regular: [...regularList],
           hot: [...hotList],
-        },
       };
     },
     addToRegularList: (state, action) => {
@@ -102,31 +100,25 @@ export const counterSlice = createSlice({
         regularList.push(action.payload.memUpdated);
       }
       return {
-        stateList: {
           all: [...stateList.all],
           regular: [...regularList],
           hot: [...hotList],
-        },
       };
     },
     clearHotList: (state, action) => {
       hotList.length = 0;
       return (state = {
-        stateList: {
           all: [...stateList.all],
           regular: [...stateList.regular],
           hot: [],
-        },
       });
     },
     clearRegularList: (state, action) => {
       regularList.length = 0;
       return (state = {
-        stateList: {
           all: [...stateList.all],
           regular: [],
           hot: [...stateList.hot],
-        },
       });
     },
     removeFromRegularList: (state, action) => {
@@ -135,11 +127,9 @@ export const counterSlice = createSlice({
         regularList.splice(indexToRemove,1)
       }
       return state = {
-        stateList: {
           all: [...stateList.all],
           regular: [...regularList],
           hot: [...hotList],
-        },
       };
       
     }
