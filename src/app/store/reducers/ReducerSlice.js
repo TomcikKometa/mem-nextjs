@@ -75,41 +75,83 @@ const hotList = [];
 const regularList = [];
 
 export const counterSlice = createSlice({
-  initialState : stateList.all,
+  initialState: stateList,
   name: "counter",
   reducers: {
     addToHotList: (state, action) => {
-      console.log(action.payload)
-      const memId = action.payload.mem.id;
-      
+      const memId = action.payload.memUpdated.id;
 
-      let isAddedToHotList = hotList.filter((z) => z.id === memId)
-      if(isAddedToHotList.length > 0) {
-        hotList
-      } else hotList.push(action.payload.mem)
-      console.log({stateList:{all:[...stateList.all],regular:[...stateList.regular],hot:[...stateList.hot,...hotList]}})
-      return {stateList:{all:[...stateList.all],regular:[...stateList.regular],hot:[...stateList.hot,...hotList]}}
+      let isAddedToHotList = hotList.filter((z) => z.id === memId);
+      if (isAddedToHotList.length > 0) {
+        hotList;
+      } else hotList.push(action.payload.memUpdated);
+      return {
+        stateList: {
+          all: [...stateList.all],
+          regular: [...regularList],
+          hot: [...hotList],
+        },
+      };
     },
     addToRegularList: (state, action) => {
-      console.log(action.payload)
-      const memId = action.payload.mem.id;
-      
-
-      let isAddedToRegularList = regularList.filter((z) => z.id === memId)
-      if(isAddedToRegularList.length > 0) {
-        regularList
-      } else regularList.push(action.payload.mem)
-      console.log( {stateList:{all:[...stateList.all],regular:[...stateList.regular,...regularList],hot:[...stateList.hot]}})
-      return {stateList:{all:[...stateList.all],regular:[...stateList.regular,...regularList],hot:[...stateList.hot]}}
+      const memId = action.payload.memUpdated.id;
+      let isAddedToRegularList = regularList.filter((z) => z.id === memId);
+      if (isAddedToRegularList.length > 0) {
+        regularList;
+      } else {
+        regularList.push(action.payload.memUpdated);
+      }
+      return {
+        stateList: {
+          all: [...stateList.all],
+          regular: [...regularList],
+          hot: [...hotList],
+        },
+      };
     },
     clearHotList: (state, action) => {
-      return state = {stateList:{all:[...stateList.all],regular:[...stateList.regular],hot:[]}}
+      hotList.length = 0;
+      return (state = {
+        stateList: {
+          all: [...stateList.all],
+          regular: [...stateList.regular],
+          hot: [],
+        },
+      });
     },
     clearRegularList: (state, action) => {
-      return state = {stateList:{all:[...stateList.all],regular:[],hot:[...stateList.hot]}}
+      regularList.length = 0;
+      return (state = {
+        stateList: {
+          all: [...stateList.all],
+          regular: [],
+          hot: [...stateList.hot],
+        },
+      });
     },
+    removeFromRegularList: (state, action) => {
+      let indexToRemove = regularList.findIndex((x) => x.id == action.payload.memUpdated.id);
+      if(indexToRemove >= 0){
+        regularList.splice(indexToRemove,1)
+      }
+      return state = {
+        stateList: {
+          all: [...stateList.all],
+          regular: [...regularList],
+          hot: [...hotList],
+        },
+      };
+      
+    }
   },
 });
 
-export const { addToHotList,addToRegularList,clearHotList,clearRegularList } = counterSlice.actions;
+export const {
+  addToHotList,
+  addToRegularList,
+  clearHotList,
+  clearRegularList,
+  removeFromRegularList,
+  returnStateList
+} = counterSlice.actions;
 export default counterSlice.reducer;

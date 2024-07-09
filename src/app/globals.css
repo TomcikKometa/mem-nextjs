@@ -26,17 +26,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
-/* a {
-  color: blue;
-} */
-
-/* Internal links, beginning with "#" */
-a[href^="#"] {
-  background-color: gold;
-}
-
-/* Links with "example" anywhere in the URL */
-a[class~="aabb"] {
+.menu_items {
   background-color: #F2D091;
   font-size: 18px;
   width: 150px;
