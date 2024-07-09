@@ -7,7 +7,6 @@ export default function MemList({ textDataTwo, textDataOne }) {
   let memsState = [];
   const showMemList = useSelector((state) => state.memRootReducer);
   const pathname = usePathname();
-  console.log(showMemList)
 
   if (pathname === "/pages/regular") {
     if (showMemList.stateList?.stateList?.regular?.length > 0) {
@@ -19,7 +18,6 @@ export default function MemList({ textDataTwo, textDataOne }) {
 
   if (pathname === "/pages/all") {
     memsState = showMemList.stateList.all;
-    console.log(memsState)
   }
 
   if (pathname === "/pages/hot") {
