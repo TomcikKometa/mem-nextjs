@@ -89,7 +89,7 @@ export default function Navbar() {
                       data-dropdown-toggle="dropdownNavbar"
                       className="data-[focus]:bg-orange-100 menuItems"
                       onClick={() => {
-                        dispatch(clearHotList("clear"), renderPage());
+                        dispatch(clearHotList("clear"));
                       }}
                     >
                       Wyczyść listę
@@ -116,7 +116,7 @@ export default function Navbar() {
                     <a
                       className="block data-[focus]:bg-orange-100 menuItems"
                       onClick={() => {
-                        dispatch(clearRegularList("clear"), renderPage());
+                        dispatch(clearRegularList("clear"));
                       }}
                     >
                       Wyczyść listę
