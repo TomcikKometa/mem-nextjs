@@ -1,40 +1,46 @@
 "use client";
-
 import { Card, CardContent, CardDescription, CardFooter } from "../ui/card";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import { addToHotList,addToRegularList } from "../../store/reducers/ReducerSlice";
+import { useDispatch } from "react-redux";
+import {
+  addToHotList,
+  addToRegularList,
+  removeFromRegularList,
+} from "../../store/reducers/ReducerSlice";
 import { useState } from "react";
 
-export default function MemCard({ mem }) {
-  const showMemList =  useSelector((state) => state.memRootReducer);
+export default function MemCard({ mem }, { changeRender }) {
   const [downvotes, setDownvotes] = useState(mem.downvotes);
   const [upvotes, setUpvotes] = useState(mem.upvotes);
   const dispatch = useDispatch();
 
   function addUpVotes(mem) {
     setUpvotes((state) => state + 1);
-    countVotes(mem)
-    // console.log(showMemList)
+    const memUpdated = {
+      downvotes: mem.downvotes,
+      id: mem.id,
+      img: mem.img,
+      title: mem.title,
+      upvotes: upvotes + 1,
+    };
+    countVotes(memUpdated);
   }
 
-  function removeDownVotes(){
+  function removeDownVotes() {
     setDownvotes((state) => state + 1);
-    countVotes()
+    countVotes();
   }
 
-  function countVotes(mem){
+  function countVotes(memUpdated) {
     const countVotes = upvotes - downvotes;
-    console.log(upvotes)
-    console.log(downvotes)
-    console.log(countVotes)
-    if(countVotes > 4){
-      dispatch(addToHotList({mem}))
-    } else {dispatch(addToRegularList({mem}))}
-    console.log(showMemList)
+    if (countVotes > 4) {
+      dispatch(addToHotList({ memUpdated })),
+        dispatch(removeFromRegularList({ memUpdated }))
+    } else {
+      dispatch(addToRegularList({ memUpdated }));
+    }
   }
 
-  
   return (
     <Card className="card_colour">
       <CardContent className="rounded-md overflow-hidden cursor-pointer hover:scale-[1.67] transition-all card_colour pb-2">
@@ -50,7 +56,9 @@ export default function MemCard({ mem }) {
       </CardContent>
       <CardDescription className="h-10 flex items-center justify-center  pl-6">
         <div className="flex text-lg ">
-          <span className="font-semibold pl-2">{upvotes} | {downvotes} </span>
+          <span className="font-semibold pl-2">
+            {upvotes} | {downvotes}{" "}
+          </span>
         </div>
       </CardDescription>
       <CardFooter className="card_footer card_shadow">
@@ -59,9 +67,9 @@ export default function MemCard({ mem }) {
             <p className="text-lg text-gray-600 font-bold">Głosuj:</p>
           </div>
           <div className="flex align-middle">
-            <div className="button_add"onClick={() => addUpVotes(mem)}>
+            <div className="button_add" onClick={() => addUpVotes(mem)}>
               <div className="button-wrapper">
-                <div className="text ">Dodaj&nbsp;</div>
+                <div className="text ">W górę&nbsp;</div>
                 <span>
                   <div className="icon d-flex align-content-center align-items-center">
                     <img
@@ -77,7 +85,7 @@ export default function MemCard({ mem }) {
             </div>
             <div className="button_reg">
               <div className="button-wrapper" onClick={() => removeDownVotes()}>
-                <div className="text ">Odejmij&nbsp;</div>
+                <div className="text ">W dół&nbsp;</div>
                 <span>
                   <div className="icon d-flex align-content-center align-items-center">
                     <img
@@ -97,26 +105,3 @@ export default function MemCard({ mem }) {
     </Card>
   );
 }
-// const [downvotes, setDownvotes] = useState(mem.downvotes);
-// const [upvotes, setUpvotes] = useState(mem.upvotes);
-
-// const [countVotes, setCountVotes] = useState(upvotes - downvotes);
-
-// function upVotes() {
-//   if (upvotes >= 0) {
-//     setCountVotes((state) => state + 1);
-//   }
-// }
-
-// function downVotes() {
-//   if (downvotes >= 0 && countVotes > 0) {
-//     console.log(downvotes);
-//     setCountVotes((state) => state - 1);
-//   }
-// }
-
-// const dispatch = useDispatch();
-
-// const upVotes = (e) => {
-//   dispatch({ type: "upVotes", value: 1 });
-// };
