@@ -109,7 +109,7 @@ export const counterSlice = createSlice({
       hotList.length = 0;
       return (state = {
           all: [...stateList.all],
-          regular: [...stateList.regular],
+          regular: [...regularList],
           hot: [],
       });
     },
@@ -118,7 +118,7 @@ export const counterSlice = createSlice({
       return (state = {
           all: [...stateList.all],
           regular: [],
-          hot: [...stateList.hot],
+          hot: [...hotList],
       });
     },
     removeFromRegularList: (state, action) => {
