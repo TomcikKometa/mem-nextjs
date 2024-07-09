@@ -14,6 +14,7 @@ export default function MemList({ textDataTwo, textDataOne }) {
     } else {
       memsState = showMemList.stateList.regular;
     }
+    console.log(showMemList)
   }
 
   if (pathname === "/pages/all") {
