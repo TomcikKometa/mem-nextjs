@@ -1,5 +1,4 @@
 "use client";
-import { useStore } from "react-redux";
 import MemList from "../../components/mem-card/MemList";
 
 export default function HotMems() {
