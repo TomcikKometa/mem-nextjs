@@ -73,12 +73,12 @@ export default function Navbar() {
             <li>
               <Menu>
                 <MenuButton>Hot</MenuButton>
-                <MenuItems anchor="bottom" className="menu_items">
+                <MenuItems anchor="bottom" className="menuItems">
                   <MenuItem>
                     <Link
                       data-dropdown-toggle="dropdownNavbar"
                       href="/pages/hot/"
-                      className="data-[focus]:bg-orange-100 menu_items"
+                      className="data-[focus]:bg-orange-100 menuItems"
                       aria-current="page"
                     >
                       Lista hot
@@ -87,7 +87,7 @@ export default function Navbar() {
                   <MenuItem>
                     <a
                       data-dropdown-toggle="dropdownNavbar"
-                      className="data-[focus]:bg-orange-100 menu_items"
+                      className="data-[focus]:bg-orange-100 menuItems"
                       onClick={() => {
                         dispatch(clearHotList("clear"), renderPage());
                       }}
@@ -101,11 +101,11 @@ export default function Navbar() {
             <li>
               <Menu>
                 <MenuButton>Regular</MenuButton>
-                <MenuItems anchor="bottom" className="menu_items">
+                <MenuItems anchor="bottom" className="menuItems">
                   <MenuItem>
                     <Link
                       data-dropdown-toggle="dropdownNavbar"
-                      className="data-[focus]:bg-orange-100 menu_items"
+                      className="data-[focus]:bg-orange-100 menuItems"
                       aria-current="page"
                       href="/pages/regular/"
                     >
@@ -114,7 +114,7 @@ export default function Navbar() {
                   </MenuItem>
                   <MenuItem>
                     <a
-                      className="block data-[focus]:bg-orange-100 aabb"
+                      className="block data-[focus]:bg-orange-100 menuItems"
                       onClick={() => {
                         dispatch(clearRegularList("clear"), renderPage());
                       }}
