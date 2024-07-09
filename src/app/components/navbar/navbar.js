@@ -3,7 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useDispatch } from "react-redux";
-import { clearHotList,clearRegularList } from "../../store/reducers/ReducerSlice";
+import {
+  clearHotList,
+  clearRegularList,
+} from "../../store/reducers/ReducerSlice";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
@@ -11,7 +14,7 @@ export default function Navbar() {
   const router = useRouter();
 
   function renderPage() {
-    router.refresh(); 
+    router.refresh();
   }
 
   return (
@@ -68,66 +71,55 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              {/* <Link
-                data-dropdown-toggle="dropdownNavbar"
-                href="/pages/hot/"
-                className=" md:hover:text-orange-300"
-                aria-current="page"
-              >
-                Hot
-              </Link> */}
               <Menu>
                 <MenuButton>Hot</MenuButton>
-                <MenuItems
-                  anchor="bottom"
-                  className="aabb"
-                >
+                <MenuItems anchor="bottom" className="menu_items">
                   <MenuItem>
-                    <a
-                      className="block data-[focus]:bg-orange-100 aabb"
+                    <Link
+                      data-dropdown-toggle="dropdownNavbar"
                       href="/pages/hot/"
+                      className="data-[focus]:bg-orange-100 menu_items"
+                      aria-current="page"
                     >
-                      Lista Hot
-                    </a>
+                      Lista hot
+                    </Link>
                   </MenuItem>
                   <MenuItem>
                     <a
-                      className="block data-[focus]:bg-orange-100 aabb"
-                     
+                      data-dropdown-toggle="dropdownNavbar"
+                      className="data-[focus]:bg-orange-100 menu_items"
                       onClick={() => {
                         dispatch(clearHotList("clear"), renderPage());
                       }}
                     >
-                      Wyczyść listę 
+                      Wyczyść listę
                     </a>
                   </MenuItem>
                 </MenuItems>
               </Menu>
             </li>
             <li>
-            <Menu>
+              <Menu>
                 <MenuButton>Regular</MenuButton>
-                <MenuItems
-                  anchor="bottom"
-                  className="aabb"
-                >
+                <MenuItems anchor="bottom" className="menu_items">
                   <MenuItem>
-                    <a
-                      className="block data-[focus]:bg-orange-100 aabb"
+                    <Link
+                      data-dropdown-toggle="dropdownNavbar"
+                      className="data-[focus]:bg-orange-100 menu_items"
+                      aria-current="page"
                       href="/pages/regular/"
                     >
-                      Lista Regular
-                    </a>
+                      Lista regular
+                    </Link>
                   </MenuItem>
                   <MenuItem>
                     <a
                       className="block data-[focus]:bg-orange-100 aabb"
-                     
                       onClick={() => {
                         dispatch(clearRegularList("clear"), renderPage());
                       }}
                     >
-                      Wyczyść listę 
+                      Wyczyść listę
                     </a>
                   </MenuItem>
                 </MenuItems>
