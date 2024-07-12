@@ -1,6 +1,9 @@
 "use client";
 import { createSlice } from "@reduxjs/toolkit";
 
+const hotList = [];
+const regularList = [];
+
 let stateList = {
   all: [
     {
@@ -67,12 +70,10 @@ let stateList = {
       id: 8,
     },
   ],
-  regular: [],
-  hot: [],
+  regular: [...regularList],
+  hot: [...hotList],
 };
 
-const hotList = [];
-const regularList = [];
 
 export const counterSlice = createSlice({
   initialState: stateList,
