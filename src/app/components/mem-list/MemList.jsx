@@ -1,5 +1,5 @@
 "use client";
-import MemCard from "./MemCard";
+import MemCard from "../mem-card/MemCard";
 import { useSelector, useStore } from "react-redux";
 import { usePathname } from "next/navigation";
 
@@ -7,6 +7,8 @@ export default function MemList({ textDataTwo, textDataOne }) {
   let memsState = [];
   const showMemList = useSelector((state) => state.memRootReducer);
   const pathname = usePathname();
+
+  console.log(showMemList);
 
   if (pathname === "/pages/regular") {
     if (showMemList.stateList?.stateList?.regular?.length > 0) {
