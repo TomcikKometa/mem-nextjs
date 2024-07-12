@@ -3,24 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useDispatch } from "react-redux";
-import {
-  clearHotList,
-  clearRegularList,
-} from "../../store/reducers/ReducerSlice";
-import { useRouter } from "next/navigation";
+import { clearHotList,clearRegularList} from "../../store/reducers/ReducerSlice";
 
 export default function Navbar() {
   const dispatch = useDispatch();
-  const router = useRouter();
-
-  function renderPage() {
-    router.refresh();
-  }
 
   return (
     <nav className="bg-orange-300 navbar-shadow">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <Image
             src="/emoji-start.svg"
             width={100}
@@ -35,7 +26,7 @@ export default function Navbar() {
               </tspan>
             </text>
           </svg>
-        </a>
+        </Link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
@@ -126,11 +117,7 @@ export default function Navbar() {
               </Menu>
             </li>
             <li>
-              <Link
-                href="/pages/new/"
-                className=" md:hover:text-orange-300"
-                aria-current="page"
-              >
+              <Link className=" md:hover:text-orange-300" href="/pages/new">
                 New
               </Link>
             </li>
