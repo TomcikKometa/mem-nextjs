@@ -1,14 +1,35 @@
 "use client";
-import { configureStore,combineReducers } from "@reduxjs/toolkit";
-import  mems from "./reducers/ReducerSlice";
-import { persistReducer,persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import mems from "./reducers/ReducerSlice";
+import { persistReducer, persistStore } from "redux-persist";
+import createWebStorage from "redux-persist/es/storage/createWebStorage";
 
+export function createPersistStore() {
+  const isServer = typeof window === "undefined";
+  if (isServer) {
+    return {
+      getItem() {
+        return Promise.resolve(null);
+      },
+      setItem() {
+        return Promise.resolve();
+      },
+      removeItem() {
+        return Promise.resolve();
+      },
+    };
+  }
+  return createWebStorage("local");
+}
+const storage =
+  typeof window !== "undefined"
+    ? createWebStorage("local")
+    : createPersistStore();
 
 const memPersistConfig = {
   key: "counter",
   storage: storage,
-  whitelist: ["stateList"]
+  whitelist: ["stateList"],
 };
 
 const memRootReducer = combineReducers({
@@ -17,9 +38,10 @@ const memRootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: {
-    memRootReducer
+    memRootReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false})
-})
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
+});
 
 export const persistor = persistStore(store);
