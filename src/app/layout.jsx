@@ -9,9 +9,7 @@ export default function RootLayout({ children }) {
       <body>
         <Providers store={store}>
           <Navbar />
-          <main>
             <main>{children}</main>
-          </main>
         </Providers>
       </body>
     </html>
