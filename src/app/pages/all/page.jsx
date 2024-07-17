@@ -1,5 +1,5 @@
 "use client";
-import MemList from "../../components/mem-card/MemList";
+import MemList from "../../components/mem-list/MemList";
 
 export default function AllMems() {
   const textDataOne = 'Głosuj już dziś i';
