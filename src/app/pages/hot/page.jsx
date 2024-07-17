@@ -1,5 +1,5 @@
 "use client";
-import MemList from "../../components/mem-card/MemList";
+import MemList from "../../components/mem-list/MemList";
 
 export default function HotMems() {
   const textDataOne = 'Jesteś na liście "Hot"" i trafiają tu memy jeśli';
