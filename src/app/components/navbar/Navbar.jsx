@@ -3,14 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useDispatch } from "react-redux";
-import { clearLists} from "../../store/reducers/ReducerSlice";
+import { clearHotList,clearRegularList} from "../../store/reducers/ReducerSlice";
 
 export default function Navbar() {
   const dispatch = useDispatch();
-
-  function handleClearLists() {
-    dispatch(clearLists());
-  }
 
   return (
     <nav className="bg-orange-300 navbar-shadow">
@@ -83,9 +79,11 @@ export default function Navbar() {
                     <a
                       data-dropdown-toggle="dropdownNavbar"
                       className="data-[focus]:bg-orange-100 menuItems"
-                      onClick={handleClearLists}
+                      onClick={() => {
+                        dispatch(clearHotList("clear"));
+                      }}
                     >
-                      Resetuj listę
+                      Wyczyść listę
                     </a>
                   </MenuItem>
                 </MenuItems>
@@ -108,9 +106,11 @@ export default function Navbar() {
                   <MenuItem>
                     <a
                       className="block data-[focus]:bg-orange-100 menuItems"
-                      onClick={handleClearLists}
+                      onClick={() => {
+                        dispatch(clearRegularList("clear"));
+                      }}
                     >
-                      Resetuj listę
+                      Wyczyść listę
                     </a>
                   </MenuItem>
                 </MenuItems>
