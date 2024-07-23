@@ -2,43 +2,17 @@
 import { Card, CardContent, CardDescription, CardFooter } from "../ui/card";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import {
-  addToHotList,
-  addToRegularList,
-  removeFromRegularList,
-} from "../../store/reducers/ReducerSlice";
-import { useState } from "react";
+import { upvote, downvote } from "../../store/reducers/ReducerSlice";
 
-export default function MemCard({ mem }, { changeRender }) {
-  const [downvotes, setDownvotes] = useState(mem.downvotes);
-  const [upvotes, setUpvotes] = useState(mem.upvotes);
+export default function MemCard({ mem }) {
   const dispatch = useDispatch();
 
-  function addUpVotes(mem) {
-    setUpvotes((state) => state + 1);
-    const memUpdated = {
-      downvotes: mem.downvotes,
-      id: mem.id,
-      img: mem.img,
-      title: mem.title,
-      upvotes: upvotes + 1,
-    };
-    countVotes(memUpdated);
+  function handleUpvote() {
+    dispatch(upvote({ id: mem.id }));
   }
 
-  function removeDownVotes() {
-    setDownvotes((state) => state + 1);
-    countVotes();
-  }
-
-  function countVotes(memUpdated) {
-    const countVotes = upvotes - downvotes;
-    if (countVotes > 4) {
-      dispatch(addToHotList({ memUpdated })),
-        dispatch(removeFromRegularList({ memUpdated }))
-    } else {
-      dispatch(addToRegularList({ memUpdated }));
-    }
+  function handleDownvote() {
+    dispatch(downvote({ id: mem.id }));
   }
 
   return (
@@ -46,7 +20,7 @@ export default function MemCard({ mem }, { changeRender }) {
       <CardContent className="rounded-md overflow-hidden cursor-pointer hover:scale-[1.67] transition-all card_colour pb-2">
         <div className="w-full aspect-w-16 aspect-h-7">
           <Image
-            src={`/` + mem.img}
+            src={`/${mem.img}`}
             alt="Picture of the author"
             width={350}
             height={350}
@@ -54,10 +28,10 @@ export default function MemCard({ mem }, { changeRender }) {
           />
         </div>
       </CardContent>
-      <CardDescription className="h-10 flex items-center justify-center  pl-6">
+      <CardDescription className="h-10 flex items-center justify-center pl-6">
         <div className="flex text-lg ">
           <span className="font-semibold pl-2">
-            {upvotes} | {downvotes}{" "}
+            {mem.upvotes} | {mem.downvotes}
           </span>
         </div>
       </CardDescription>
@@ -67,9 +41,9 @@ export default function MemCard({ mem }, { changeRender }) {
             <p className="text-lg text-gray-600 font-bold">Głosuj:</p>
           </div>
           <div className="flex align-middle">
-            <div className="button_add" onClick={() => addUpVotes(mem)}>
+            <div className="button_add" onClick={handleUpvote}>
               <div className="button-wrapper">
-                <div className="text ">W górę&nbsp;</div>
+                <div className="text">W górę&nbsp;</div>
                 <span>
                   <div className="icon d-flex align-content-center align-items-center">
                     <img
@@ -84,8 +58,8 @@ export default function MemCard({ mem }, { changeRender }) {
               </div>
             </div>
             <div className="button_reg">
-              <div className="button-wrapper" onClick={() => removeDownVotes()}>
-                <div className="text ">W dół&nbsp;</div>
+              <div className="button-wrapper" onClick={handleDownvote}>
+                <div className="text">W dół&nbsp;</div>
                 <span>
                   <div className="icon d-flex align-content-center align-items-center">
                     <img
