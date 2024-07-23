@@ -33,8 +33,11 @@ export const counterSlice = createSlice({
         mem.downvotes += 1;
       }
     },
+    clearLists: (state, action) => {
+      return state = initialState
+    },
   },
 });
 
-export const { upvote, downvote } = counterSlice.actions;
+export const { upvote, downvote,clearLists } = counterSlice.actions;
 export default counterSlice.reducer;
