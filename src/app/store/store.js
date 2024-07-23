@@ -21,27 +21,34 @@ export function createPersistStore() {
   }
   return createWebStorage("local");
 }
-const storage =
-  typeof window !== "undefined"
-    ? createWebStorage("local")
-    : createPersistStore();
+
+const storage = createPersistStore();
 
 const memPersistConfig = {
-  key: "counter",
+  key: "mems",
   storage: storage,
   whitelist: ["stateList"],
 };
 
-const memRootReducer = combineReducers({
-  stateList: persistReducer(memPersistConfig, mems),
+const rootReducer = combineReducers({
+  mems: persistReducer(memPersistConfig, mems),
 });
 
-export const store = configureStore({
-  reducer: {
-    memRootReducer,
+const persistedReducer = persistReducer(
+  {
+    key: "root",
+    storage,
+    whitelist: ["mems"],
   },
+  rootReducer
+);
+
+export const store = configureStore({
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }),
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export const persistor = persistStore(store);
