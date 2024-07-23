@@ -7,8 +7,6 @@ export default function MemList({ textDataTwo, textDataOne }) {
   const memsState = useSelector((state) => state.mems.all);
   const pathname = usePathname();
 
-  console.log(memsState)
-
   let filteredMems = [];
   if (pathname === "/pages/regular") {
     filteredMems = memsState.filter((mem) => mem.upvotes - mem.downvotes <= 4);
