@@ -1,33 +1,21 @@
 "use client";
 import MemCard from "../mem-card/MemCard";
-import { useSelector, useStore } from "react-redux";
+import { useSelector } from "react-redux";
 import { usePathname } from "next/navigation";
 
 export default function MemList({ textDataTwo, textDataOne }) {
-  let memsState = [];
-  const showMemList = useSelector((state) => state.memRootReducer);
+  const memsState = useSelector((state) => state.mems.all);
   const pathname = usePathname();
 
-  console.log(showMemList);
+  console.log(memsState)
 
+  let filteredMems = [];
   if (pathname === "/pages/regular") {
-    if (showMemList.stateList?.stateList?.regular?.length > 0) {
-      memsState = showMemList.stateList.stateList.regular;
-    } else {
-      memsState = showMemList.stateList.regular;
-    }
-  }
-
-  if (pathname === "/pages/all") {
-    memsState = showMemList.stateList.all;
-  }
-
-  if (pathname === "/pages/hot") {
-    if (showMemList.stateList?.stateList?.hot?.length > 0) {
-      memsState = showMemList.stateList.stateList.hot;
-    } else {
-      memsState = showMemList.stateList.hot;
-    }
+    filteredMems = memsState.filter((mem) => mem.upvotes - mem.downvotes <= 4);
+  } else if (pathname === "/pages/hot") {
+    filteredMems = memsState.filter((mem) => mem.upvotes - mem.downvotes > 4);
+  } else if (pathname === "/pages/all") {
+    filteredMems = memsState;
   }
 
   return (
@@ -37,8 +25,8 @@ export default function MemList({ textDataTwo, textDataOne }) {
         <p>{textDataTwo}</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {memsState && memsState.length > 0
-          ? memsState.map((mem) => <MemCard mem={mem} key={mem.title} />)
+        {filteredMems && filteredMems.length > 0
+          ? filteredMems.map((mem) => <MemCard mem={mem} key={mem.id} />)
           : null}
       </div>
     </div>
